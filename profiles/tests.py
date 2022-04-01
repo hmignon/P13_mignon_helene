@@ -25,5 +25,5 @@ class ProfilesTest(TestCase):
         assert response.status_code == 200
         assert b"<title>TestUser</title>" in response.content
 
-    def test_model_str(self):
+    def test_profiles_models_str(self):
         assert str(self.profile) == self.user.username

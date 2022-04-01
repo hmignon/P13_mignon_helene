@@ -27,6 +27,6 @@ class LettingsTest(TestCase):
         assert response.status_code == 200
         assert b"<title>Test Letting</title>" in response.content
 
-    def test_models_str(self):
+    def test_lettings_models_str(self):
         assert str(self.address) == f'{self.address.number} {self.address.street}'
         assert str(self.letting) == self.letting.title
