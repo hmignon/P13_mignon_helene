@@ -1,6 +1,6 @@
-from django.db import models
-from django.core.validators import MaxValueValidator, MinLengthValidator
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinLengthValidator
+from django.db import models
 
 
 class Address(models.Model):
@@ -13,6 +13,9 @@ class Address(models.Model):
 
     def __str__(self):
         return f'{self.number} {self.street}'
+
+    class Meta:
+        verbose_name_plural = 'addresses'
 
 
 class Letting(models.Model):
