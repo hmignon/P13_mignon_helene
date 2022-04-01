@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinLengthValidator
 from django.db import models
 
@@ -11,11 +10,11 @@ class Address(models.Model):
     zip_code = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
     country_iso_code = models.CharField(max_length=3, validators=[MinLengthValidator(3)])
 
+    class Meta:
+        verbose_name_plural = "addresses"
+
     def __str__(self):
         return f'{self.number} {self.street}'
-
-    class Meta:
-        verbose_name_plural = 'addresses'
 
 
 class Letting(models.Model):
@@ -24,11 +23,3 @@ class Letting(models.Model):
 
     def __str__(self):
         return self.title
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    favorite_city = models.CharField(max_length=64, blank=True)
-
-    def __str__(self):
-        return self.user.username
