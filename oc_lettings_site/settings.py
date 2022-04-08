@@ -118,7 +118,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Sentry configuration
 sentry_sdk.init(
-    dsn=env('SENTRY_DSN'),
+    dsn=f"https://{env('SENTRY_DSN')}.ingest.sentry.io/6318503",
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
