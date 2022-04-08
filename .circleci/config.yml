@@ -39,7 +39,7 @@ jobs:
           name: Containerize
           command: |
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-            docker build -t image_oc_lettings_site .
+            docker build -t image_oc_lettings_site --build-arg DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY --build-arg SENTRY_DSN=$SENTRY_DSN .
             docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
 
@@ -61,7 +61,6 @@ workflows:
     jobs:
       - build-and-test
       - containerize:
-          extra_build_args: '--build-arg DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY --build-arg SENTRY_DSN=$SENTRY_DSN'
           requires:
             - build-and-test
           filters:
