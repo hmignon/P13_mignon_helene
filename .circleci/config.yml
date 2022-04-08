@@ -44,7 +44,8 @@ jobs:
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
 
   deploy:
-    machine: true
+    machine:
+      image: ubuntu-1604:202010-01
     steps:
       - checkout
       - run:
