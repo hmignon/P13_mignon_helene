@@ -32,6 +32,9 @@ jobs:
   containerize:
     docker:
       - image: cimg/python:3.10.2
+    environment:
+      DJANGO_SECRET_KEY: $DJANGO_SECRET_KEY
+      SENTRY_DSN: $SENTRY_DSN
     steps:
       - checkout
       - setup_remote_docker
@@ -39,7 +42,7 @@ jobs:
           name: Containerize
           command: |
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-            docker build -t image_oc_lettings_site --build-arg DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY --build-arg SENTRY_DSN=$SENTRY_DSN .
+            docker build -t image_oc_lettings_site .
             docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
 
