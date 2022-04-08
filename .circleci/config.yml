@@ -43,6 +43,18 @@ jobs:
             docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
 
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Deploy Docker image to Heroku
+          command: |
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a oc-lettings-mignonh web
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a oc-lettings-mignonh web
+
 workflows:
   main:
     jobs:
@@ -50,6 +62,14 @@ workflows:
       - containerize:
           requires:
             - build-and-test
+          filters:
+            branches:
+              only:
+                - master
+      - deploy:
+          requires:
+            - build-and-test
+            - containerize
           filters:
             branches:
               only:
