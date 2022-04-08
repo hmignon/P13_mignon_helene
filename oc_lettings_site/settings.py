@@ -2,7 +2,6 @@ import os
 
 import environ
 import sentry_sdk
-from django.core.management.utils import get_random_secret_key
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
