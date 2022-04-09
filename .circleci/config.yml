@@ -39,7 +39,7 @@ workflows:
     jobs:
       - build-and-test
       - docker/publish:
-          extra_build_args: '--build-arg DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY --build-arg SENTRY_DSN=$SENTRY_DSN'
+          extra_build_args: --build-arg DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY --build-arg SENTRY_DSN=$SENTRY_DSN
           image: $DOCKER_LOGIN/oc-lettings
           tag: '$CIRCLE_SHA1,latest'
           requires:
