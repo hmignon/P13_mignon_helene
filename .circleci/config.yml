@@ -39,7 +39,7 @@ jobs:
           command: |
             echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
             docker build -t image_oc_lettings_site .
-            docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1,latest
+            docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
   deploy:
     machine:
