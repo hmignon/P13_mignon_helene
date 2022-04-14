@@ -17,7 +17,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('DJANGO_SECRET_KEY', default=get_random_secret_key())
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(env('DEBUG', default=0))
@@ -118,7 +118,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Sentry configuration
 sentry_sdk.init(
-    dsn='https://2f1b0f23e21042fda1617fadc137c80d@o1160952.ingest.sentry.io/6318503',
+    dsn=env('SENTRY_DSN'),
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
