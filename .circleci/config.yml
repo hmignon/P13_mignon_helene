@@ -19,15 +19,16 @@ jobs:
           paths:
             - ".venv"
       - run:
-          name: Run tests
-          command: |
-            . venv/bin/activate
-            pytest
-      - run:
           name: Linting
           command: |
             . venv/bin/activate
             flake8
+      - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            pytest
+
   containerize:
     docker:
       - image: cimg/python:3.10.2
@@ -41,9 +42,10 @@ jobs:
             docker build -t image_oc_lettings_site .
             docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
+
   deploy:
     machine:
-      image: ubuntu-1604:202010-01
+      image: cimg/python:3.10.2
     steps:
       - checkout
       - run:
@@ -51,8 +53,14 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create oc-lettings-mignonh --addons=heroku-postgresql
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:push -a oc-lettings-mignonh web
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a oc-lettings-mignonh web
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py migrate -a oc-lettings-mignonh
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py loaddata data.json -a oc-lettings-mignonh
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py collectstatic --noinput --clear -a oc-lettings-mignonh
+
+
 workflows:
   main:
     jobs:
