@@ -4,6 +4,7 @@ jobs:
   build-and-test:
     docker:
       - image: cimg/python:3.10.2
+    resource_class: small
     steps:
       - checkout
       - restore_cache:
@@ -32,6 +33,7 @@ jobs:
   containerize:
     docker:
       - image: cimg/python:3.10.2
+    resource_class: medium
     steps:
       - checkout
       - setup_remote_docker
@@ -43,11 +45,20 @@ jobs:
             docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
 
-# HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:destroy $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME
-# HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create $HEROKU_APP_NAME --region eu --addons=heroku-postgresql
+
+# Add ONE of these command lines to the pipeline depending on whether you want to :
+# - create an app with Postgresql addon (if app does not exist)
+  # HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create $HEROKU_APP_NAME --region eu --addons=heroku-postgresql
+
+# - create Postgresql addon for existing app
+  # HEROKU_API_KEY=${HEROKU_TOKEN} heroku addons:create heroku-postgresql -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME
+
+# !! Leave empty if app with Postresql addon already exists !!
+
   deploy:
     machine:
       image: ubuntu-2004:current
+    resource_class: medium
     steps:
       - checkout
       - run:
@@ -55,7 +66,7 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:login
-            HEROKU_API_KEY=${HEROKU_TOKEN} heroku addons:create heroku-postgresql -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME
+            # add line here
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY -a $HEROKU_APP_NAME
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set SENTRY_DSN=$SENTRY_DSN -a $HEROKU_APP_NAME
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku config:set DEBUG=0 -a $HEROKU_APP_NAME
