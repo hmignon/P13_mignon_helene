@@ -43,7 +43,6 @@ jobs:
             docker tag image_oc_lettings_site mignonh/oc_lettings:$CIRCLE_SHA1
             docker push mignonh/oc_lettings:$CIRCLE_SHA1
 
-# HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py collectstatic --noinput --clear -a $HEROKU_APP_NAME
   deploy:
     machine:
       image: ubuntu-2004:current
@@ -63,6 +62,7 @@ jobs:
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku container:release -a $HEROKU_APP_NAME web
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py migrate -a $HEROKU_APP_NAME
             HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py loaddata data.json -a $HEROKU_APP_NAME
+            HEROKU_API_KEY=${HEROKU_TOKEN} heroku run python manage.py collectstatic --noinput --clear -a $HEROKU_APP_NAME
 
 workflows:
   main:
