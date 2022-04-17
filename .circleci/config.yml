@@ -54,6 +54,7 @@ jobs:
   # HEROKU_API_KEY=${HEROKU_TOKEN} heroku addons:create heroku-postgresql -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME
 
 # !! Leave empty if app with Postresql addon already exists !!
+# !! Please remove added line for future commits !!
 
   deploy:
     machine:
