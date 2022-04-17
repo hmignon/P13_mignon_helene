@@ -47,7 +47,7 @@ jobs:
 
 
 # Add ONE of these command lines to the pipeline depending on whether you want to :
-# - create an app with Postgresql addon (if app does not exist)
+# - create an app with Postgresql addon (if app does not exist, recommended for first deploy)
   # HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create $HEROKU_APP_NAME --region eu --addons=heroku-postgresql
 
 # - create Postgresql addon for existing app

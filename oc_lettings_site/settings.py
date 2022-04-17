@@ -122,7 +122,7 @@ STATIC_URL = '/static/'
 
 # Sentry configuration
 sentry_sdk.init(
-    dsn=env('SENTRY_DSN', default=''),
+    dsn=env('SENTRY_DSN'),
     integrations=[DjangoIntegration()],
     traces_sample_rate=1.0,
     send_default_pii=True

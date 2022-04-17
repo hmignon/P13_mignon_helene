@@ -2,6 +2,7 @@ FROM python:3-alpine
 WORKDIR /usr/src/app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV SENTRY_DSN $SENTRY_DSN
 COPY . .
 RUN \
   apk add --no-cache postgresql-libs && \
