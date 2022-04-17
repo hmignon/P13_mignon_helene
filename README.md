@@ -35,7 +35,7 @@
 
 _Testé sous Windows 10 - Python 3.9.5 - Django 3.0_
 
-Plusieurs domaines du site doivent être améliorés à partir du projet
+Plusieurs domaines du site **OC Lettings** ont été améliorés à partir du projet
 [Python-OC-Lettings-FR](https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR) :
 
 1) Réduction de la dette technique
@@ -156,7 +156,7 @@ Vous pouvez modifier le fichier en ajoutant :
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Créer l'image `docker build -t <image-name> .` avec le nom de votre choix
-- Utiliser la commande ci-dessous, en remplaçant *<image-name>* par le nom de l'image créée :
+- Utiliser la commande ci-dessous, en remplaçant *image-name* par le nom de l'image créée :
 
 `docker run --rm -p 8000:8000 --env-file .env <image-name>`
 
@@ -168,7 +168,7 @@ Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:80
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Aller sur le repository Docker : https://hub.docker.com/r/mignonh/oc_lettings/tags
 - Copier le tag de l'image de votre choix (de préférence le plus récent)
-- Utiliser la commande ci-dessous, en remplaçant *<image-tag>* par le tag de l'image souhaitée :
+- Utiliser la commande ci-dessous, en remplaçant *image-tag* par le tag de l'image souhaitée :
 
 `docker run --rm -p 8000:8000 --env-file .env mignonh/oc_lettings:<image-tag>`
 
