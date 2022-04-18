@@ -24,9 +24,9 @@
 
 ---
 ## Accès rapide
-1. [Objectifs](#objectifs)
-2. [Développement local](#dev)
-3. [Déploiement](#deploiement)
+#### 1. [Objectifs](#objectifs)
+#### 2. [Développement local](#dev)
+#### 3. [Déploiement](#deploiement)
 
 ---
 
@@ -157,9 +157,7 @@ Vous pouvez modifier le fichier en ajoutant :
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Créer l'image `docker build -t <image-name> .` avec le nom de votre choix
-- Utiliser la commande ci-dessous, en remplaçant *image-name* par le nom de l'image créée :
-
-`docker run --rm -p 8000:8000 --env-file .env <image-name>`
+- Utiliser la commande `docker run --rm -p 8000:8000 --env-file .env <image-name>`, en remplaçant *image-name* par le nom de l'image créée
 
 Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8000/
 
@@ -169,9 +167,7 @@ Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:80
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Aller sur le repository Docker : https://hub.docker.com/r/mignonh/oc_lettings/tags
 - Copier le tag de l'image de votre choix (de préférence le plus récent)
-- Utiliser la commande ci-dessous, en remplaçant *image-tag* par le tag de l'image souhaitée :
-
-`docker run --rm -p 8000:8000 --env-file .env mignonh/oc_lettings:<image-tag>`
+- Utiliser la commande `docker run --rm -p 8000:8000 --env-file .env mignonh/oc_lettings:<image-tag>`, en remplaçant *image-tag* par le tag de l'image souhaitée
 
 Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8000/
 
@@ -229,14 +225,14 @@ Il tague les images avec le “hash” de commit CircleCI (*$CIRCLE_SHA1*).
 
 ### Heroku
 
-Pour créer une application dans votre compte Heroku, il est possible de :
+Pour créer une application dans votre compte Heroku, il est possible de soit :
 
 - Créer manuellement l'application sur le site. Le nom de l'application doit correspondre à la variable *HEROKU_APP_NAME* définie pour CircleCI. 
-Installer [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) pour cette application.
+Installer l'addon [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) pour cette application.
 
 
-- Modifier la configuration du pipeline CircleCI : éditer le fichier *[.circleci/config.yml](.circleci/config.yml)* 
-en ajoutant la ligne de commande à la place de *(paste command line here)* comme suit :
+- Modifier la configuration du pipeline CircleCI pour le premier commit > éditer le fichier *[.circleci/config.yml](.circleci/config.yml)* 
+en ajoutant la ligne de commande à la place de *"paste command line here"* comme suit :
 
   - Pour créer une nouvelle application de zéro avec l'addon Heroku Postgres :
 
