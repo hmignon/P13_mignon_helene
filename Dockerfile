@@ -10,5 +10,6 @@ RUN \
   apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
   python3 -m pip install -r requirements.txt --no-cache-dir && \
   apk --purge del .build-deps && \
-  python3 manage.py collectstatic --noinput --clear
+  python3 manage.py collectstatic --noinput --clear && \
+  python3 manage.py dumpdata -o data.json
 CMD python manage.py runserver 0.0.0.0:$PORT
