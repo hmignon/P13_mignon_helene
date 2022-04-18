@@ -23,14 +23,15 @@
 </p>
 
 ---
-# Accès rapide
+## Accès rapide
 1. [Objectifs](#objectifs)
 2. [Développement local](#dev)
 3. [Déploiement](#deploiement)
 
+---
 
 <a name="objectifs"></a>
-## Objectifs 
+# Objectifs 
 **Livrable P13 OC D-A Python : Mettre à l'échelle une application Django en utilisant une architecture modulaire**
 
 _Testé sous Windows 10 - Python 3.9.5 - Django 3.0_
@@ -40,7 +41,7 @@ Plusieurs domaines du site **OC Lettings** ont été améliorés à partir du pr
 
 1) Réduction de la dette technique
 
-   - Corriger erreurs de linting
+   - Corriger les erreurs de linting
    - Corriger la pluralisation des noms de modèles dans le site d'administration
 
 
@@ -54,8 +55,8 @@ Plusieurs domaines du site **OC Lettings** ont été améliorés à partir du pr
 3) Ajout d'un pipeline CI/CD avec [CircleCI](https://circleci.com) et déploiement sur [Heroku](https://www.heroku.com)
 
    1) *Compilation* : exécuter le linting et la suite de tests (sur toutes les branches)
-   2) *Conteneurisation* : construire et push une image du site avec [Docker](https://www.docker.com) (si étape i. réussie, branche master uniquement)
-   3) *Déploiement* : mettre en service le site avec Heroku (si étape ii. réussie, branche master uniquement)
+   2) *Conteneurisation* : construire et push une image du site avec [Docker](https://www.docker.com) (si étape i. réussie, branche *master* uniquement)
+   3) *Déploiement* : mettre en service le site avec Heroku (si étape ii. réussie, branche *master* uniquement)
 
 
 4) Surveillance de l'application et suivi des erreurs via [Sentry](https://sentry.io/welcome/)
@@ -63,13 +64,13 @@ Plusieurs domaines du site **OC Lettings** ont été améliorés à partir du pr
 ### Liens rapides :
 - **[Pipeline CircleCI de ce projet](https://app.circleci.com/pipelines/github/hmignon/Python-OC-Lettings-FR)**
 - **[Images Docker disponibles](https://hub.docker.com/repository/docker/mignonh/oc_lettings/tags)**
-- **[Exemple d'application déployée](https://oc-lettings-mignonh.herokuapp.com)**
+- **[Application déployée sur Heroku](https://oc-lettings-mignonh.herokuapp.com)**
 - **[Exemple d'erreur sur Sentry](https://sentry.io/share/issue/0d3464c341cb4269809496e18d7c78aa/)**
 
 <a name="dev"></a>
-## Développement local
+# Développement local
 
-### Prérequis
+## Prérequis
 
 - Compte GitHub avec accès en lecture à ce repository
 - Git CLI
@@ -79,12 +80,12 @@ Plusieurs domaines du site **OC Lettings** ont été améliorés à partir du pr
 Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell 
 exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
 
-### Cloner le repository
+## Cloner le repository
 
 - `cd /path/to/put/project/in`
 - `git clone https://github.com/hmignon/Python-OC-Lettings-FR.git`
 
-### Créer l'environnement virtuel
+## Créer l'environnement virtuel
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `python -m venv venv`
@@ -97,10 +98,10 @@ exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel 
 - Pour désactiver l'environnement, `deactivate`
 
 <a name="env"></a>
-### Variables d'environnement : fichier .env
+## Variables d'environnement : fichier .env
 Pour générer un fichier .env à compléter, lancer le script `python setup_env.py`.
 
-Exemple de fichier .env généré :
+Exemple de fichier *.env* généré :
 
 ```
 DJANGO_SECRET_KEY=j%yuc7l_wwz5t8d=g)zxh6ol@$7*lwx6n0p)(k$dewlr0hf2u-
@@ -112,7 +113,7 @@ Vous pouvez modifier le fichier en ajoutant :
 - l'URL du projet Sentry après `SENTRY_DSN=` (vide par défaut, voir [Sentry](#sentry))
 - `DEBUG=0` (*False*) ou `DEBUG=1` (*True*) (*False* par défaut)
 
-### Exécuter le site
+## Exécuter le site
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate` (MacOS et Linux) ou `venv\Scripts\activate` (Windows)
@@ -123,19 +124,19 @@ Vous pouvez modifier le fichier en ajoutant :
 - Aller sur http://127.0.0.1:8000/ dans un navigateur.
 - Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
 
-### Linting
+## Linting
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate` (MacOS et Linux) ou `venv\Scripts\activate` (Windows)
 - `flake8`
 
-### Tests unitaires
+## Tests unitaires
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate` (MacOS et Linux) ou `venv\Scripts\activate` (Windows)
 - `pytest`
 
-### Base de données
+## Base de données
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - Ouvrir une session shell `sqlite3`
@@ -145,14 +146,14 @@ Vous pouvez modifier le fichier en ajoutant :
 - Lancer une requête sur la table des profils, `select user_id, favorite_city from oc_lettings_site_profile where favorite_city like 'B%';`
 - `.quit` pour quitter
 
-### Panel d'administration
+## Panel d'administration
 
 - Aller sur http://127.0.0.1:8000/admin/
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
 
-### Docker
+## Docker
 
-#### Lancement de l'application en local via la création d'une image Docker
+### Lancement de l'application en local via la création d'une image Docker
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Créer l'image `docker build -t <image-name> .` avec le nom de votre choix
@@ -163,7 +164,7 @@ Vous pouvez modifier le fichier en ajoutant :
 Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8000/
 
 
-#### Lancement de l'application en local via l'utilisation d'une image sur DockerHub
+### Lancement de l'application en local via l'utilisation d'une image sur DockerHub
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Aller sur le repository Docker : https://hub.docker.com/r/mignonh/oc_lettings/tags
@@ -176,10 +177,9 @@ Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:80
 
 
 <a name="deploiement"></a>
-## Déploiement
+# Déploiement
 
-
-### Prérequis
+## Prérequis
 Afin d'effectuer le déploiement et l'intégration continue de l'application, les comptes suivants sont nécessaires :
 
 - compte [GitHub](https://github.com/)
@@ -189,7 +189,7 @@ Afin d'effectuer le déploiement et l'intégration continue de l'application, le
 - compte [Sentry](https://sentry.io/welcome/)
 
 
-### Description
+## Description
 Le déploiement de l'application est automatisé par un pipeline CircleCI. 
 Lorsque l'on push des modifications sur le repository GitHub, le pipeline déclenche l'exécution des tests et du linting du code. 
 Ces opérations sont effectuées sur **toutes les branches du projet**.
@@ -200,13 +200,13 @@ les opérations suivantes sont déclenchées :
 - **Si et seulement si** l'étape précédente est réussie, déploiement de l'application sur Heroku
 
 
-### Configuration
+## Configuration
 Après avoir récupéré le projet, mis en place l'environnement de développement local (voir [Développement local](#dev))
 et créé les comptes requis, initialiser un projet sur CircleCI via *"Set Up Project"*. 
 Sélectionner la branche *master* comme source pour le fichier *.circleci/config.yml*.
 
 
-#### Variables CircleCI
+### Variables CircleCI
 Pour faire fonctionner le pipeline CircleCI, il est nécessaire de préciser des variables d'environnement (*Project Settings* --> *Environment Variables*) :
 
 | Variable CircleCI | Description                                                                                                                                                                                                               |
@@ -220,14 +220,14 @@ Pour faire fonctionner le pipeline CircleCI, il est nécessaire de préciser des
 | HEROKU_TOKEN      | Token Heroku, disponible dans les paramètres du compte (*Heroku API Key*)                                                                                                                                                 |
 
 
-#### Docker
+### Docker
 
 Créer un repository sur DockerHub. Le nom du repository doit correspondre à la variable *DOCKER_REPO* définie pour CircleCI.
 
 Le workflow de CircleCI va créer et déposer l'image de l'application dans le repository DockerHub défini. 
 Il tague les images avec le “hash” de commit CircleCI (*$CIRCLE_SHA1*).
 
-#### Heroku
+### Heroku
 
 Pour créer une application dans votre compte Heroku, il est possible de :
 
@@ -249,14 +249,14 @@ en ajoutant la ligne de commande à la place de *(paste command line here)* comm
    **Note : Si votre application est déjà créée avec l'addon Heroku Postgres, il n'est pas nécessaire de modifier la configuration.**
 
    Le premier workflow CircleCI se chargera de créer l'application / ajouter l'addon Postgres automatiquement. 
-**Veiller à supprimer la ligne de commande ajoutée dans *[.circleci/config.yml](.circleci/config.yml)* pour les futurs commits.**
+**Veillez à supprimer la ligne de commande ajoutée dans *[.circleci/config.yml](.circleci/config.yml)* pour les futurs commits.**
 
 
 <a name="sentry"></a>
-#### Sentry
+### Sentry
 
 Après avoir créé un compte [Sentry](https://sentry.io/welcome/), créer un projet pour la plateforme Django. Le SENTRY_DSN sera disponible
-dans *Project Settings > Client Keys (DSN)*. Veiller à ajouter cette variable à CircleCI et dans votre fichier *.env*.
+dans *Project Settings > Client Keys (DSN)*. Veillez à ajouter cette variable à CircleCI et dans le fichier *.env*.
 
 La journalisation Sentry peut être testée en naviguant vers http://127.0.0.1:8000/sentry-debug/ en local, 
 ou via `https://<HEROKU_APP_NAME>.herokuapp.com/sentry-debug/`. 
