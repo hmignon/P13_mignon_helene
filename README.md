@@ -63,7 +63,7 @@ Plusieurs domaines du site **OC Lettings** ont été améliorés à partir du pr
 
 ### Liens rapides :
 - **[Pipeline CircleCI de ce projet](https://app.circleci.com/pipelines/github/hmignon/Python-OC-Lettings-FR)**
-- **[Images Docker disponibles](https://hub.docker.com/repository/docker/mignonh/oc_lettings/tags)**
+- **[Images Docker disponibles](https://hub.docker.com/r/mignonh/oc_lettings/tags)**
 - **[Application déployée sur Heroku](https://oc-lettings-mignonh.herokuapp.com)**
 - **[Exemple d'erreur sur Sentry](https://sentry.io/share/issue/0d3464c341cb4269809496e18d7c78aa/)**
 
