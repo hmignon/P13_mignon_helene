@@ -157,9 +157,9 @@ Vous pouvez modifier le fichier en ajoutant :
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Créer l'image `docker build -t <image-name> .` avec le nom de votre choix
-- Utiliser la commande `docker run --rm -p 8000:8000 --env-file .env <image-name>`, en remplaçant *image-name* par le nom de l'image créée
+- Utiliser la commande `docker run --rm -p 8080:8080 --env-file .env <image-name>`, en remplaçant *image-name* par le nom de l'image créée
 
-Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8000/
+Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8080/
 
 
 ### Lancement de l'application en local via l'utilisation d'une image sur DockerHub
@@ -167,9 +167,9 @@ Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:80
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Aller sur le repository Docker : https://hub.docker.com/r/mignonh/oc_lettings/tags
 - Copier le tag de l'image de votre choix (de préférence le plus récent)
-- Utiliser la commande `docker run --rm -p 8000:8000 --env-file .env mignonh/oc_lettings:<image-tag>`, en remplaçant *image-tag* par le tag de l'image souhaitée
+- Utiliser la commande `docker run --rm -p 8080:8080 --env-file .env mignonh/oc_lettings:<image-tag>`, en remplaçant *image-tag* par le tag de l'image souhaitée
 
-Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8000/
+Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8080/
 
 
 <a name="deploiement"></a>
