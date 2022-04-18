@@ -231,13 +231,18 @@ Il tague les images avec le “hash” de commit CircleCI (*$CIRCLE_SHA1*).
 
 ### Heroku
 
-Pour créer une application dans votre compte Heroku, il est possible de soit :
+Pour créer une application dans votre compte Heroku, plusieurs options sont possibles :
 
-- Créer manuellement l'application sur le site. Le nom de l'application doit correspondre à la variable *HEROKU_APP_NAME* définie pour CircleCI. 
+- **Option 1 :** Créer manuellement l'application sur le site. Le nom de l'application doit correspondre à la variable *HEROKU_APP_NAME* définie pour CircleCI. 
 Installer l'addon [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) pour cette application.
 
 
-- Modifier la configuration du pipeline CircleCI pour le premier commit > éditer le fichier *[.circleci/config.yml](.circleci/config.yml)* 
+- **Option 2 :** Installer [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli). Utiliser la 
+commande `heroku apps:create <app-name> --region eu --addons=heroku-postgresql` avec le nom d'application de votre choix. 
+Le nom d'application doit correspondre à la variable *HEROKU_APP_NAME* définie pour CircleCI.
+
+
+- **Option 3 :** Modifier la configuration du pipeline CircleCI pour le premier commit > éditer le fichier *[.circleci/config.yml](.circleci/config.yml)* 
 en ajoutant la ligne de commande à la place de *"paste command line here"* comme suit :
 
   - Pour créer une nouvelle application de zéro avec l'addon Heroku Postgres :
