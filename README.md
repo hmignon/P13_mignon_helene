@@ -98,8 +98,8 @@ exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel 
 - Pour désactiver l'environnement, `deactivate`
 
 <a name="env"></a>
-## Variables d'environnement : fichier .env
-Pour générer un fichier .env à compléter, lancer le script `python setup_env.py`.
+## Variables d'environnement : fichier *.env*
+Pour générer un fichier *.env* à compléter, lancer le script `python setup_env.py`.
 
 Exemple de fichier *.env* généré :
 
@@ -155,6 +155,7 @@ Vous pouvez modifier le fichier en ajoutant :
 
 ### Lancement de l'application en local via la création d'une image Docker
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
+- Naviguer vers le répertoire du projet `cd /path/to/Python-OC-Lettings-FR`
 - Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Créer l'image `docker build -t <image-name> .` avec le nom de votre choix
 - Utiliser la commande `docker run --rm -p 8080:8080 --env-file .env <image-name>`, en remplaçant *image-name* par le nom de l'image créée
@@ -164,10 +165,9 @@ Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:80
 
 ### Lancement de l'application en local via l'utilisation d'une image sur DockerHub
 - Télécharger et installer [Docker](https://docs.docker.com/get-docker/)
-- Confirmer que le fichier *.env* nécessaire a bien été créé (voir [Variables d'environnement](#env))
 - Aller sur le repository Docker : https://hub.docker.com/r/mignonh/oc_lettings/tags
 - Copier le tag de l'image de votre choix (de préférence le plus récent)
-- Utiliser la commande `docker run --rm -p 8080:8080 --env-file .env mignonh/oc_lettings:<image-tag>`, en remplaçant *image-tag* par le tag de l'image souhaitée
+- Utiliser la commande `docker run --rm -p 8080:8080 mignonh/oc_lettings:<image-tag>`, en remplaçant *image-tag* par le tag de l'image souhaitée
 
 Vous pouvez accéder à l'application dans un navigateur via http://127.0.0.1:8080/
 
@@ -197,12 +197,18 @@ les opérations suivantes sont déclenchées :
 
 
 ## Configuration
+
+### CircleCI
+
 Après avoir récupéré le projet, mis en place l'environnement de développement local (voir [Développement local](#dev))
 et créé les comptes requis, initialiser un projet sur CircleCI via *"Set Up Project"*. 
 Sélectionner la branche *master* comme source pour le fichier *.circleci/config.yml*.
 
+<p align="center">
+    <img src="img/cirleci_setup.gif" alt="circleci-setup" />
+    <em>Configuration CircleCI</em>
+</p>
 
-### Variables CircleCI
 Pour faire fonctionner le pipeline CircleCI, il est nécessaire de préciser des variables d'environnement (*Project Settings* --> *Environment Variables*) :
 
 | Variable CircleCI | Description                                                                                                                                                                                                               |
@@ -253,6 +259,11 @@ en ajoutant la ligne de commande à la place de *"paste command line here"* comm
 
 Après avoir créé un compte [Sentry](https://sentry.io/welcome/), créer un projet pour la plateforme Django. Le SENTRY_DSN sera disponible
 dans *Project Settings > Client Keys (DSN)*. Veillez à ajouter cette variable à CircleCI et dans le fichier *.env*.
+
+<p align="center">
+    <img src="img/sentry_dashboard.png" alt="circleci-setup" />
+    <em>Dashboard Sentry</em>
+</p>
 
 La journalisation Sentry peut être testée en naviguant vers http://127.0.0.1:8000/sentry-debug/ en local, 
 ou via `https://<HEROKU_APP_NAME>.herokuapp.com/sentry-debug/`. 
