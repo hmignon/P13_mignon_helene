@@ -23,6 +23,10 @@
 </p>
 
 ---
+
+*> Switch to :uk: [English version](README.en.md).*
+
+---
 ## Accès rapide
 #### 1. [Objectifs](#objectifs)
 #### 2. [Développement local](#dev)
@@ -146,7 +150,7 @@ Vous pouvez modifier le fichier en ajoutant :
 - Lancer une requête sur la table des profils, `select user_id, favorite_city from oc_lettings_site_profile where favorite_city like 'B%';`
 - `.quit` pour quitter
 
-## Panel d'administration
+## Site d'administration
 
 - Aller sur http://127.0.0.1:8000/admin/
 - Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
@@ -270,6 +274,6 @@ dans *Project Settings > Client Keys (DSN)*. Veillez à ajouter cette variable �
     <em>Dashboard Sentry</em>
 </p>
 
-La journalisation Sentry peut être testée en naviguant vers http://127.0.0.1:8000/sentry-debug/ en local, 
-ou via `https://<HEROKU_APP_NAME>.herokuapp.com/sentry-debug/`. 
+La journalisation Sentry peut être testée en naviguant vers `/sentry-debug/`, localement (avec `runserver` ou une image Docker) et sur l'application déployée
+via `https://<HEROKU_APP_NAME>.herokuapp.com/sentry-debug/`. 
 Ce point de terminaison provoque une *ZeroDivisionError* ([exemple](https://sentry.io/share/issue/0d3464c341cb4269809496e18d7c78aa/)).
