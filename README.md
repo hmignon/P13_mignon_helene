@@ -24,7 +24,7 @@
 
 ---
 
-*> Switch to :uk: [English version](README.en.md).*
+**![uk-flag](https://flagcdn.com/16x12/gb.png) [English documentation](README.en.md)**
 
 ---
 ## Accès rapide
@@ -213,7 +213,7 @@ Sélectionner la branche *master* comme source pour le fichier *.circleci/config
     <em>Configuration CircleCI</em>
 </p>
 
-Pour faire fonctionner le pipeline CircleCI, il est nécessaire de préciser des variables d'environnement (*Project Settings* --> *Environment Variables*) :
+Pour faire fonctionner le pipeline CircleCI, il est nécessaire de préciser des variables d'environnement (*Project Settings* > *Environment Variables*) :
 
 | Variable CircleCI | Description                                                                                                                                                                                                               |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

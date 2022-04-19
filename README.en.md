@@ -24,7 +24,7 @@
 
 ---
 
-*> Voir la :fr: [version française](README.md).*
+**![fr-flag](https://flagcdn.com/16x12/fr.png) [Documentation en français](README.md)**
 
 ---
 ## Contents
@@ -37,12 +37,12 @@
 <a name="objectifs"></a>
 # About the project
 
-**OpenClassrooms Project #13 : Scale a Django Application Using Modular Architecture**
+**OpenClassrooms Python Developer Project #13: Scale a Django Application Using Modular Architecture**
 
 _Tested on Windows 10 - Python 3.9.5 - Django 3.0_
 
 Several areas of the **OC Lettings** app have been improved from 
-the [Python-OC-Lettings-FR](https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR) project :
+the [Python-OC-Lettings-FR](https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR) project:
 
 1) Technical debt refactor
 
@@ -52,21 +52,21 @@ the [Python-OC-Lettings-FR](https://github.com/OpenClassrooms-Student-Center/Pyt
 
 2) Modular architecture refactor
 
-   - Create 3 new apps : *lettings*, *profiles* and *home* to ensure the separation of their dedicated features
+   - Create 3 new apps: *lettings*, *profiles* and *home* to ensure the separation of their dedicated features
    - Convert *oc_lettings_site* to a Django project
    - Write a test suite
 
 
 3) CI/CD pipeline using [CircleCI](https://circleci.com) and deployment to [Heroku](https://www.heroku.com)
 
-   1) *Build and test* : run linting and test suite (for all branches)
-   2) *Containerization* : build a [Docker](https://www.docker.com) image and push it the DockerHub (triggers if step i. passes, for *master* branch only)
-   3) *Deployment* : deploy the site using Heroku (triggers if step ii. passes, for *master* branch only)
+   1) *Build and test*: run linting and test suite (for all branches)
+   2) *Containerization*: build a [Docker](https://www.docker.com) image and push it the DockerHub (triggers if step i. passes, for *master* branch only)
+   3) *Deployment*: deploy the site using Heroku (triggers if step ii. passes, for *master* branch only)
 
 
-4) Error logging with [Sentry](https://sentry.io/welcome/)
+4) Application and error monitoring via [Sentry](https://sentry.io/welcome/)
 
-### Quick access links :
+### Quick access links:
 - **[CircleCI pipeline for this project](https://app.circleci.com/pipelines/github/hmignon/Python-OC-Lettings-FR)**
 - **[Available Docker images](https://hub.docker.com/r/mignonh/oc_lettings/tags)**
 - **[Deployed app on Heroku](https://oc-lettings-mignonh.herokuapp.com)**
@@ -106,7 +106,7 @@ the above-mentioned Python interpreter (unless a virtual environment is activate
 ## Environment variables : *.env* file
 To generate a *.env* file template, run `python setup_env.py`.
 
-Example of a generated *.env* file :
+Example of a generated *.env* file:
 
 ```
 DJANGO_SECRET_KEY=j%yuc7l_wwz5t8d=g)zxh6ol@$7*lwx6n0p)(k$dewlr0hf2u-
@@ -114,7 +114,7 @@ SENTRY_DSN=
 DEBUG=
 ```
 
-The file can be edited by adding :
+The file can be edited by adding:
 - the Sentry project URL after `SENTRY_DSN=` (empty by default, see [Sentry](#sentry))
 - `DEBUG=0` (*False*) or `DEBUG=1` (*True*) (*False* by default)
 
@@ -170,7 +170,7 @@ You can access the app in any web browser at http://127.0.0.1:8080/
 
 ### Pull an existing image from DockerHub to run the app locally
 - Download and install [Docker](https://docs.docker.com/get-docker/)
-- Go to the Docker repository : https://hub.docker.com/r/mignonh/oc_lettings/tags
+- Go to the Docker repository: https://hub.docker.com/r/mignonh/oc_lettings/tags
 - Copy the tag you would like to use (preferably the most recent)
 - Use `docker run --rm -p 8080:8080 mignonh/oc_lettings:<image-tag>` command, replacing *image-tag* with the desired tag
 
@@ -181,7 +181,7 @@ You can access the app in any web browser at http://127.0.0.1:8080/
 # Deployment
 
 ## Prerequisites
-In order to perform the deployment and continuous integration of the app, the following accounts are required :
+In order to perform the deployment and continuous integration of the app, the following accounts are required:
 
 - [GitHub](https://github.com/) account
 - [CircleCI](https://circleci.com) account (linked to GitHub account)
@@ -193,7 +193,7 @@ In order to perform the deployment and continuous integration of the app, the fo
 ## Summary
 The deployment of the app is automated by the CircleCI pipeline.
 When updates are pushed to the GitHub repository, the pipeline triggers the test suite and code linting for **all project branches**.
-If updates are made on the **master branch**, and **if and only if** the tests and linting pass, the workflow :
+If updates are made on the **master branch**, and **if and only if** the tests and linting pass, the workflow:
 - Builds a Docker image and pushes it to DockerHub
 - **If and only if** the previous step passes, deploys the app on Heroku
 
@@ -210,17 +210,17 @@ Select the **master** branch as a source for the *.circleci/config.yml* file.
     <em>CircleCI Configuration</em>
 </p>
 
-To run the CircleCI pipeline properly, set up the following environment variables (*Project Settings* --> *Environment Variables*) :
+To run the CircleCI pipeline properly, set up the following environment variables (*Project Settings* > *Environment Variables*):
 
-| CircleCI variable | Description                                                                                                                                                                                               |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DJANGO_SECRET_KEY | Django secret key : generate a random key with [Djecrety](https://djecrety.ir) or with <br/> `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` |
-| SENTRY_DSN        | Sentry project URL (see [Sentry](#sentry))                                                                                                                                                                |
-| DOCKER_LOGIN      | Docker account username                                                                                                                                                                                   |
-| DOCKER_PASSWORD   | Docker account password                                                                                                                                                                                   |
-| DOCKER_REPO       | DockerHub repository name                                                                                                                                                                                 |
-| HEROKU_APP_NAME   | Heroku app name : the deployed app will be accessed via `https://<HEROKU_APP_NAME>.herokuapp.com/`                                                                                                        |
-| HEROKU_TOKEN      | Heroku token, can be found in account settings (*Heroku API Key*)                                                                                                                                         |
+| CircleCI variable | Description                                                                                                                                                                                              |
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DJANGO_SECRET_KEY | Django secret key: generate a random key with [Djecrety](https://djecrety.ir) or with <br/> `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'` |
+| SENTRY_DSN        | Sentry project URL (see [Sentry](#sentry))                                                                                                                                                               |
+| DOCKER_LOGIN      | Docker account username                                                                                                                                                                                  |
+| DOCKER_PASSWORD   | Docker account password                                                                                                                                                                                  |
+| DOCKER_REPO       | DockerHub repository name                                                                                                                                                                                |
+| HEROKU_APP_NAME   | Heroku app name: the deployed app will be accessed via `https://<HEROKU_APP_NAME>.herokuapp.com/`                                                                                                        |
+| HEROKU_TOKEN      | Heroku token, can be found in account settings (*Heroku API Key*)                                                                                                                                        |
 
 
 ### Docker
@@ -231,29 +231,29 @@ The CircleCI workflow will build and push the app image in the DockerHub reposit
 All images are tagged with the CircleCI commit “hash” (*$CIRCLE_SHA1*).
 
 ### Heroku
-To create an app in your Heroku account, several methods are available :
+To create an app in your Heroku account, several methods are available:
 
-- **Method 1 :** Create the app manually on the Heroku website. The name of the app must match the *HEROKU_APP_NAME* variable set in CircleCI. 
+- **Method 1:** Create the app manually on the Heroku website. The name of the app must match the *HEROKU_APP_NAME* variable set in CircleCI. 
 Install the [Heroku Postgres](https://elements.heroku.com/addons/heroku-postgresql) addon for the app.
 
 
-- **Method 2 :** Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli). Use the 
+- **Method 2:** Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli). Use the 
 command `heroku apps:create <app-name> --region eu --addons=heroku-postgresql` with the desired name for the app. 
 The name of the app must match the *HEROKU_APP_NAME* variable set in CircleCI.
 
 
-- **Method 3 :** Edit the CircleCI pipeline configuration for the first commit > add one the following command lines to *[.circleci/config.yml](.circleci/config.yml)* 
-whether you want to :
+- **Method 3:** Edit the CircleCI pipeline configuration for the first commit > add one the following command lines to *[.circleci/config.yml](.circleci/config.yml)* 
+whether you want to:
 
-  - Create a new app from scratch with the Heroku Postgres addon :
+  - Create a new app from scratch with the Heroku Postgres addon:
 
    `HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create $HEROKU_APP_NAME --region eu --addons=heroku-postgresql`
 
-  - Install the Heroku Postgres addon to an existing app : 
+  - Install the Heroku Postgres addon to an existing app: 
 
    `HEROKU_API_KEY=${HEROKU_TOKEN} heroku addons:create heroku-postgresql -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME`
 
-   **Note : Leave the config file unchanged if your app already exists with the Heroku Postgres addon.**
+   **Note: Leave the config file unchanged if your app already exists with the Heroku Postgres addon.**
 
    The first CircleCI workflow will create the app / install the addon automatically.
 **Remember to remove the command line added to *[.circleci/config.yml](.circleci/config.yml)* for future commits.**
