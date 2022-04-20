@@ -60,7 +60,7 @@ the [Python-OC-Lettings-FR](https://github.com/OpenClassrooms-Student-Center/Pyt
 3) CI/CD pipeline using [CircleCI](https://circleci.com) and deployment to [Heroku](https://www.heroku.com)
 
    1) *Build and test*: run linting and test suite (for all branches)
-   2) *Containerization*: build a [Docker](https://www.docker.com) image and push it the DockerHub (triggers if step i. passes, for *master* branch only)
+   2) *Containerization*: build a [Docker](https://www.docker.com) image and push it to DockerHub (triggers if step i. passes, for *master* branch only)
    3) *Deployment*: deploy the site using Heroku (triggers if step ii. passes, for *master* branch only)
 
 
