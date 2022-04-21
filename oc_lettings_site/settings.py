@@ -23,7 +23,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(env('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'herokuapp.com']
 
 # Application definition
 
@@ -80,6 +80,7 @@ DATABASES = {
     }
 }
 
+# Update default database if env variable 'DATABASE_URL' is found (Heroku deploy)
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
