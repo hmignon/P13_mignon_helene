@@ -110,11 +110,13 @@ Exemple de fichier *.env* généré :
 ```
 DJANGO_SECRET_KEY=j%yuc7l_wwz5t8d=g)zxh6ol@$7*lwx6n0p)(k$dewlr0hf2u-
 SENTRY_DSN= 
+HEROKU_APP_NAME= 
 DEBUG=
 ```
 
 Vous pouvez modifier le fichier en ajoutant :
-- l'URL du projet Sentry après `SENTRY_DSN=` (vide par défaut, voir [Sentry](#sentry))
+- l'URL du projet Sentry après `SENTRY_DSN=` (voir [Sentry](#sentry))
+- le nom de l'application qui sera déployée sur Heroku
 - `DEBUG=0` (*False*) ou `DEBUG=1` (*True*) (*False* par défaut)
 
 ## Exécuter le site

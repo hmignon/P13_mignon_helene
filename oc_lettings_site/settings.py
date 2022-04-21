@@ -7,7 +7,6 @@ from django.core.management.utils import get_random_secret_key
 from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Initialise environment variables
@@ -23,7 +22,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY', default=get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(env('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', f'{env("HEROKU_APP_NAME")}.herokuapp.com']
 
 # Application definition
 

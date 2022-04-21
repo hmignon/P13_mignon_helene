@@ -45,18 +45,16 @@ jobs:
             docker tag image_oc_lettings_site $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
             docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
 
-
-# Add ONE of these command lines to the pipeline depending on whether you want to :
-# - create an app with Postgresql addon (if app does not exist, recommended for first deploy)
-  # HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create $HEROKU_APP_NAME --region eu --addons=heroku-postgresql
-
-# - create Postgresql addon for existing app
-  # HEROKU_API_KEY=${HEROKU_TOKEN} heroku addons:create heroku-postgresql -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME
-
-# !! Leave empty if app with Postresql addon already exists !!
-# !! Please remove added line for future commits !!
-
   deploy:
+    # Add ONE of these command lines to the pipeline depending on whether you want to :
+    # - create an app with Postgresql addon (if app does not exist, recommended for first deploy)
+    # HEROKU_API_KEY=${HEROKU_TOKEN} heroku apps:create $HEROKU_APP_NAME --region eu --addons=heroku-postgresql
+
+    # - create Postgresql addon for existing app
+    # HEROKU_API_KEY=${HEROKU_TOKEN} heroku addons:create heroku-postgresql -a $HEROKU_APP_NAME --confirm $HEROKU_APP_NAME
+
+    # !! Leave empty if app with Postresql addon already exists !!
+    # !! Please remove added line for future commits !!
     machine:
       image: ubuntu-2004:current
     resource_class: medium
