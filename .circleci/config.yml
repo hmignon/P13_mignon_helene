@@ -30,6 +30,7 @@ jobs:
             . venv/bin/activate
             pytest
 
+
   containerize:
     docker:
       - image: cimg/python:3.10.2
